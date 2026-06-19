@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.supabase.co" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
+      // Vercel Blob
+      { protocol: "https", hostname: "**.public.blob.vercel-storage.com" },
+      // Picklenest CDN (Shopify)
+      { protocol: "https", hostname: "picklenest.tw" },
+      { protocol: "https", hostname: "cdn.shopify.com" },
     ],
     formats: ["image/avif", "image/webp"],
   },
