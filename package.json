@@ -52,8 +52,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@esbuild/linux-x64": "^0.28.1",
-    "@types/node": "^22",
+"@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/xml2js": "^0.4.14",
