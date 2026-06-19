@@ -2,12 +2,20 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { marked } from "marked";
 import prisma from "@/lib/prisma";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, articleSchema } from "@/lib/schema-markup";
 import JsonLd from "@/components/seo/JsonLd";
 import { formatDate } from "@/lib/utils";
 import ProductCard from "@/components/product/ProductCard";
+
+// 自動偵測並解析 Markdown 內容
+function renderContent(raw: string): string {
+  // 若內容已含 HTML 標籤則直接回傳，否則解析 Markdown
+  if (/<[a-z][\s\S]*>/i.test(raw)) return raw;
+  return marked.parse(raw) as string;
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -136,7 +144,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               prose-img:rounded-xl prose-img:shadow-sm
               prose-blockquote:border-[#1F6B4F] prose-blockquote:text-gray-600
               prose-code:text-brand-700 prose-code:bg-brand-50 prose-code:px-1 prose-code:rounded"
-            dangerouslySetInnerHTML={{ __html: article.content }}
+            dangerouslySetInnerHTML={{ __html: renderContent(article.content) }}
           />
         </article>
 
