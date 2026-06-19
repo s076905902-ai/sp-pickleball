@@ -10,6 +10,7 @@ import ProductCard from "@/components/product/ProductCard";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import ProductImageGallery from "@/components/product/ProductImageGallery";
 import { SUITABLE_FOR_LABELS, formatPrice, scoreColor, scoreLabel } from "@/lib/utils";
+import { renderContent } from "@/lib/content";
 import { Star, Shield, Truck, ChevronRight } from "lucide-react";
 
 interface PageProps {
@@ -310,7 +311,7 @@ function ProductTabs({
           <h2 className="text-xl font-bold text-gray-900 mb-4">商品介紹</h2>
           <div
             className="prose prose-sm max-w-none text-gray-600"
-            dangerouslySetInnerHTML={{ __html: product.description }}
+            dangerouslySetInnerHTML={{ __html: renderContent(product.description) }}
           />
         </section>
       )}

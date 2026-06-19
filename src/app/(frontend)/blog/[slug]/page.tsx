@@ -2,20 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { marked } from "marked";
 import prisma from "@/lib/prisma";
+import { renderContent } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, articleSchema } from "@/lib/schema-markup";
 import JsonLd from "@/components/seo/JsonLd";
 import { formatDate } from "@/lib/utils";
 import ProductCard from "@/components/product/ProductCard";
 
-// 自動偵測並解析 Markdown 內容
-function renderContent(raw: string): string {
-  // 若內容已含 HTML 標籤則直接回傳，否則解析 Markdown
-  if (/<[a-z][\s\S]*>/i.test(raw)) return raw;
-  return marked.parse(raw) as string;
-}
 
 interface PageProps {
   params: Promise<{ slug: string }>;

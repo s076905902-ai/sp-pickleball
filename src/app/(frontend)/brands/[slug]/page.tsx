@@ -7,6 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema-markup";
 import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
+import { renderContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -92,7 +93,7 @@ export default async function BrandPage({ params }: PageProps) {
         {brand.history && (
           <section className="mb-10">
             <h2 className="text-xl font-bold text-gray-900 mb-3">品牌歷史</h2>
-            <div className="prose prose-sm max-w-none text-gray-600" dangerouslySetInnerHTML={{ __html: brand.history }} />
+            <div className="prose prose-sm max-w-none text-gray-600" dangerouslySetInnerHTML={{ __html: renderContent(brand.history) }} />
           </section>
         )}
 
@@ -100,7 +101,7 @@ export default async function BrandPage({ params }: PageProps) {
         {brand.techFeatures && (
           <section className="mb-10">
             <h2 className="text-xl font-bold text-gray-900 mb-3">技術特色</h2>
-            <div className="prose prose-sm max-w-none text-gray-600" dangerouslySetInnerHTML={{ __html: brand.techFeatures }} />
+            <div className="prose prose-sm max-w-none text-gray-600" dangerouslySetInnerHTML={{ __html: renderContent(brand.techFeatures) }} />
           </section>
         )}
 

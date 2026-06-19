@@ -8,6 +8,7 @@ import { breadcrumbSchema, faqPageSchema } from "@/lib/schema-markup";
 import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
 import SortSelect from "@/components/product/SortSelect";
+import { renderContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -131,7 +132,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
         {/* GEO content */}
         {geoContent?.aiStructuredContent && (
           <section className="prose prose-sm max-w-none text-gray-600 mb-8">
-            <div dangerouslySetInnerHTML={{ __html: String(geoContent.aiStructuredContent) }} />
+            <div dangerouslySetInnerHTML={{ __html: renderContent(String(geoContent.aiStructuredContent)) }} />
           </section>
         )}
 
