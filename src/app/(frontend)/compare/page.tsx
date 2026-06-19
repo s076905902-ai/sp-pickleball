@@ -25,7 +25,7 @@ export default async function ComparePage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {comparePages.map((page) => (
             <Link key={page.id} href={`/compare/${page.slug}`}
-              className="border rounded-xl p-5 hover:border-brand-300 hover:shadow-sm transition-all group">
+              className="border rounded-xl p-5 hover:border-[#BCDECF] hover:shadow-sm transition-all group">
               <h2 className="font-bold text-gray-900 group-hover:text-brand-700">{page.title}</h2>
               {page.description && <p className="text-sm text-gray-500 mt-1 line-clamp-2">{page.description}</p>}
               <span className="text-brand-600 text-sm font-medium mt-3 flex items-center gap-1">查看比較 →</span>

@@ -123,7 +123,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
           {/* Excerpt */}
           {article.excerpt && (
-            <p className="text-lg text-gray-600 leading-relaxed mb-6 font-medium border-l-4 border-brand-400 pl-4">
+            <p className="text-lg text-gray-600 leading-relaxed mb-6 font-medium border-l-4 border-[#1F6B4F] pl-4">
               {article.excerpt}
             </p>
           )}
@@ -134,7 +134,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               prose-headings:font-bold prose-headings:text-gray-900
               prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline
               prose-img:rounded-xl prose-img:shadow-sm
-              prose-blockquote:border-brand-400 prose-blockquote:text-gray-600
+              prose-blockquote:border-[#1F6B4F] prose-blockquote:text-gray-600
               prose-code:text-brand-700 prose-code:bg-brand-50 prose-code:px-1 prose-code:rounded"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />

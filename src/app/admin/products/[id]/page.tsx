@@ -21,13 +21,4 @@ export default async function EditProductPage({
   const serialized = {
     ...product,
     price: Number(product.price),
-    salePrice: product.salePrice ? Number(product.salePrice) : null,
-    status: product.status as string,
-  };
-
-  return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <EditProductForm product={serialized} brands={brands} categories={categories} />
-    </div>
-  );
-}
+    s

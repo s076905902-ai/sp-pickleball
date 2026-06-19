@@ -173,7 +173,7 @@ export default function AiAdvisor() {
           <button
             key={opt.value}
             onClick={() => answer(q.id, opt.value)}
-            className="w-full text-left p-4 border rounded-xl hover:border-brand-400 hover:bg-brand-50 transition-all group"
+            className="w-full text-left p-4 border rounded-xl hover:border-[#1F6B4F] hover:bg-brand-50 transition-all group"
           >
             <div className="font-medium text-gray-900 group-hover:text-brand-700">{opt.label}</div>
             <div className="text-sm text-gray-500 mt-0.5">{opt.desc}</div>

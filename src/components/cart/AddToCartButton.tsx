@@ -117,9 +117,9 @@ function StockNotifyForm({ productId }: { productId: string }) {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="輸入 Email，到貨通知我"
         required
-        className="flex-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brand-500"
+        className="flex-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#1F6B4F]"
       />
-      <button type="submit" className="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition-colors">
+      <button type="submit" className="bg-[#123524] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#0D2A1B] transition-colors">
         通知
       </button>
     </form>

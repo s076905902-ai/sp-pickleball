@@ -158,14 +158,4 @@ export default function ProductCard({ product, showScores = false }: ProductCard
 function ScoreRow({ label, value }: { label: string; value: number }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[10px] text-[#4B5563] w-8 shrink-0">{label}</span>
-      <div className="flex-1 h-1.5 bg-[#E5E2D8] rounded-full overflow-hidden">
-        <div
-          className="h-full bg-[#1F6B4F] rounded-full"
-          style={{ width: `${value}%` }}
-        />
-      </div>
-      <span className="text-[10px] text-[#4B5563] w-6 text-right">{value}</span>
-    </div>
-  );
-}
+      <span className="text-[10px] text-[#4B5563] w-

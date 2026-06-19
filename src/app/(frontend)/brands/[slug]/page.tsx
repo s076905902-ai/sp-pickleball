@@ -109,7 +109,7 @@ export default async function BrandPage({ params }: PageProps) {
         {/* GEO AI summary */}
         {geoContent?.aiSummary && (
           <section className="mb-10 bg-brand-50 rounded-2xl p-6 border border-brand-100">
-            <h2 className="text-lg font-bold text-brand-800 mb-2">SP Pickleball 總結</h2>
+            <h2 className="text-lg font-bold text-[#0D2A1B] mb-2">SP Pickleball 總結</h2>
             <p className="text-brand-700 text-sm leading-relaxed">{geoContent.aiSummary}</p>
           </section>
         )}

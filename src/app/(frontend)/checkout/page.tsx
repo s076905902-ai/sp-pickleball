@@ -65,8 +65,8 @@ export default function CheckoutPage() {
         <p className="text-gray-600 mb-6">
           請在 24 小時內完成匯款，匯款後請至訂單頁面通知我們。
         </p>
-        <div className="bg-brand-50 border border-brand-200 rounded-xl p-6 mb-6 text-left">
-          <h2 className="font-bold text-brand-800 mb-3">匯款資訊</h2>
+        <div className="bg-brand-50 border border-[#E0F0E8] rounded-xl p-6 mb-6 text-left">
+          <h2 className="font-bold text-[#0D2A1B] mb-3">匯款資訊</h2>
           <div className="space-y-1 text-sm text-brand-700">
             <p>銀行：○○銀行（代碼：XXX）</p>
             <p>帳號：XXXX-XXXX-XXXX-XXXX</p>

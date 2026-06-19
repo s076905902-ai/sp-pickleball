@@ -104,23 +104,4 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="hover:text-[#C8A45D] transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-white/8">
-        <div className="container-padded py-5 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-[#FAFAF8]/30">
-          <p>© {new Date().getFullYear()} SP Pickleball. All rights reserved.</p>
-          <p>匹克球拍 · Pickleball Paddle Taiwan</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
+      
