@@ -19,14 +19,23 @@ export default async function FaqPage() {
     orderBy: { sortOrder: "asc" },
   });
 
-  const grouped = faqs.reduce<Record<string, typeof faqs>>((acc, faq) => {
+  // Deduplicate by question text (guard against DB duplicates)
+  const seen = new Set<string>();
+  const uniqueFaqs = faqs.filter((f) => {
+    const key = f.question.trim();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  const grouped = uniqueFaqs.reduce<Record<string, typeof faqs>>((acc, faq) => {
     const key = faq.category ?? "general";
     if (!acc[key]) acc[key] = [];
     acc[key].push(faq);
     return acc;
   }, {});
 
-  const faqItems = faqs.map((f) => ({ question: f.question, answer: f.answer }));
+  const faqItems = uniqueFaqs.map((f) => ({ question: f.question, answer: f.answer }));
 
   return (
     <>
