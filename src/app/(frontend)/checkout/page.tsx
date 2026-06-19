@@ -40,9 +40,15 @@ export default function CheckoutPage() {
         body: JSON.stringify(form),
       });
       const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || "建立訂單失敗，請重試");
+        return;
+      }
       if (data.orderId) {
         setOrderId(data.orderId);
         setStep("success");
+      } else {
+        alert("建立訂單失敗，請重試");
       }
     } catch {
       alert("建立訂單失敗，請重試");
