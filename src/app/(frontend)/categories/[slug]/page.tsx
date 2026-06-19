@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { SuitableFor } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema-markup";
@@ -29,14 +30,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Skill-level category slugs map to SuitableFor enum values
-const SLUG_TO_SUITABLE: Record<string, string> = {
-  beginner: "BEGINNER",
-  intermediate: "INTERMEDIATE",
-  advanced: "ADVANCED",
-  female: "FEMALE",
-  "tennis-convert": "TENNIS_CONVERT",
-  doubles: "DOUBLES",
-  singles: "SINGLES",
+const SLUG_TO_SUITABLE: Record<string, SuitableFor> = {
+  beginner: SuitableFor.BEGINNER,
+  intermediate: SuitableFor.INTERMEDIATE,
+  advanced: SuitableFor.ADVANCED,
+  female: SuitableFor.FEMALE,
+  "tennis-convert": SuitableFor.TENNIS_CONVERT,
+  doubles: SuitableFor.DOUBLES,
+  singles: SuitableFor.SINGLES,
 };
 
 export default async function CategoryPage({ params, searchParams }: PageProps) {
@@ -52,7 +53,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   // For skill-level slugs use suitableFor filter; otherwise use categoryId
   const suitableForValue = SLUG_TO_SUITABLE[slug];
   const productWhere = suitableForValue
-    ? { suitableFor: { has: suitableForValue as any }, status: "PUBLISHED" as const }
+    ? { suitableFor: { has: suitableForValue }, status: "PUBLISHED" as const }
     : { categoryId: category.id, status: "PUBLISHED" as const };
 
   const [products, total, geoContent] = await Promise.all([
