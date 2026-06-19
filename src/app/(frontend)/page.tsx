@@ -265,4 +265,30 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── AI Advisor CTA ──────────────────────────────
+      {/* ── AI Advisor CTA ────────────────────────────────────────── */}
+      <section className="section-gap bg-[#111111]">
+        <div className="container-padded">
+          <div className="max-w-2xl mx-auto text-center">
+            <p className="text-xs text-[#C8A45D] font-semibold tracking-widest uppercase mb-3">
+              AI 智能選拍
+            </p>
+            <h2 className="text-3xl font-bold text-[#FAFAF8] mb-4">
+              不知道怎麼選？讓 AI 幫你
+            </h2>
+            <p className="text-[#FAFAF8]/60 mb-8 leading-relaxed">
+              回答幾個問題，AI 顧問會根據你的打球習慣、技術水平與預算，
+              <br className="hidden sm:block" />
+              為你推薦最適合的球拍。
+            </p>
+            <Link
+              href="/ai"
+              className="inline-flex items-center gap-2 bg-[#C8A45D] text-[#111111] font-bold px-8 py-4 rounded-full hover:bg-[#B89245] transition-colors text-base"
+            >
+              開始 AI 選拍 <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
