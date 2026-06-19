@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
+import { sendOrderEmails } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   const session = await auth();
@@ -14,7 +15,7 @@ export async function POST(req: NextRequest) {
 
   // Get cart items
   const cartId = req.cookies.get("cartId")?.value;
-  let cartItems: { productId: string; quantity: number; unitPrice: number }[] = [];
+  let cartItems: { productId: string; productName: string; quantity: number; unitPrice: number }[] = [];
 
   if (cartId) {
     const cart = await prisma.cart.findUnique({
@@ -24,6 +25,7 @@ export async function POST(req: NextRequest) {
     if (cart?.items.length) {
       cartItems = cart.items.map((i) => ({
         productId: i.productId,
+        productName: i.product.name,
         quantity: i.quantity,
         unitPrice: Number(i.product.salePrice ?? i.product.price),
       }));
@@ -68,6 +70,22 @@ export async function POST(req: NextRequest) {
   if (cartId) {
     await prisma.cart.delete({ where: { id: cartId } }).catch(() => {});
   }
+
+  // Send emails (non-blocking — email 失敗不影響訂單)
+  sendOrderEmails({
+    orderNumber: order.orderNumber,
+    buyerName,
+    buyerEmail: buyerEmail ?? "",
+    buyerPhone,
+    total,
+    items: cartItems.map((i) => ({
+      productName: i.productName,
+      quantity: i.quantity,
+      unitPrice: i.unitPrice,
+      total: i.unitPrice * i.quantity,
+    })),
+    createdAt: order.createdAt,
+  }).catch((e) => console.error("[order] email 寄送失敗:", e));
 
   return NextResponse.json({ orderId: order.id, orderNumber: order.orderNumber });
 }

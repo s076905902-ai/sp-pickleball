@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingCart, Search, User, ChevronDown } from "lucide-react";
+import { Menu, X, ShoppingCart, Search, ChevronDown } from "lucide-react";
 
 const navigation = [
   {
@@ -129,14 +129,6 @@ export default function Header() {
                   0
                 </span>
               </Link>
-              <Link
-                href="/account"
-                aria-label="會員"
-                className="p-2 text-[#FAFAF8]/60 hover:text-[#C8A45D] transition-colors hidden sm:block"
-              >
-                <User className="w-5 h-5" />
-              </Link>
-
               {/* Shop CTA */}
               <Link
                 href="/products"
