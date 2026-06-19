@@ -31,7 +31,7 @@ export default function AdminSeoPage() {
 
       <div className="grid lg:grid-cols-3 gap-6 mb-8">
         {[
-          { label: "已設定 SEO", value: entries.length, color: "text-green-600" },
+          { label: "已設定 SEO", value: entries.length, color: "text-[#1F6B4F]" },
           { label: "noIndex 頁面", value: entries.filter(e => e.noIndex).length, color: "text-red-600" },
           { label: "排除 Sitemap", value: entries.filter(e => !e.inSitemap).length, color: "text-orange-600" },
         ].map((stat) => (
@@ -63,8 +63,8 @@ export default function AdminSeoPage() {
                   <span className="text-xs bg-gray-100 px-2 py-0.5 rounded font-mono">{e.entityType}</span>
                 </td>
                 <td className="px-4 py-3 text-gray-700 max-w-xs truncate">{e.title ?? <span className="text-gray-300">—</span>}</td>
-                <td className="px-4 py-3">{e.noIndex ? <span className="text-red-500 text-xs">是</span> : <span className="text-green-600 text-xs">否</span>}</td>
-                <td className="px-4 py-3">{e.inSitemap ? <span className="text-green-600 text-xs">包含</span> : <span className="text-gray-400 text-xs">排除</span>}</td>
+                <td className="px-4 py-3">{e.noIndex ? <span className="text-red-500 text-xs">是</span> : <span className="text-[#1F6B4F] text-xs">否</span>}</td>
+                <td className="px-4 py-3">{e.inSitemap ? <span className="text-[#1F6B4F] text-xs">包含</span> : <span className="text-gray-400 text-xs">排除</span>}</td>
                 <td className="px-4 py-3">
                   <button className="text-xs text-brand-600 hover:underline">編輯</button>
                 </td>

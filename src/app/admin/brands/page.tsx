@@ -9,7 +9,7 @@ export default async function AdminBrandsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">品牌管理</h1>
-        <Link href="/admin/brands/new" className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-green-700">
+        <Link href="/admin/brands/new" className="bg-[#123524] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-[#1F6B4F]">
           <Plus className="w-4 h-4" /> 新增品牌
         </Link>
       </div>
@@ -46,7 +46,7 @@ export default async function AdminBrandsPage() {
                 <td className="px-4 py-3 text-gray-600">{b.country ?? "—"}</td>
                 <td className="px-4 py-3 text-gray-600">{b.foundedYear ?? "—"}</td>
                 <td className="px-4 py-3">
-                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${b.isActive ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${b.isActive ? "bg-[#E0F0E8] text-[#0D2A1B]" : "bg-gray-100 text-gray-500"}`}>
                     {b.isActive ? "啟用" : "停用"}
                   </span>
                 </td>
@@ -57,7 +57,7 @@ export default async function AdminBrandsPage() {
                       <Edit className="w-4 h-4" />
                     </Link>
                     {b.website && (
-                      <a href={b.website} target="_blank" rel="noopener noreferrer" className="p-1.5 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded">
+                      <a href={b.website} target="_blank" rel="noopener noreferrer" className="p-1.5 text-gray-500 hover:text-[#123524] hover:bg-[#F2F8F5] rounded">
                         <Globe className="w-4 h-4" />
                       </a>
                     )}

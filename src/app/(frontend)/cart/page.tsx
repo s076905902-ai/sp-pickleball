@@ -135,7 +135,7 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">運費</span>
-                <span className="text-green-600 font-medium">免費</span>
+                <span className="text-[#1F6B4F] font-medium">免費</span>
               </div>
             </div>
             <div className="border-t pt-4 mb-6">

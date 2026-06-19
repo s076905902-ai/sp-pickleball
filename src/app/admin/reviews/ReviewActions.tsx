@@ -22,7 +22,7 @@ export default function ReviewActions({ id, isPublished }: { id: string; isPubli
     <div className="flex gap-1 ml-4 shrink-0">
       {!isPublished && (
         <button onClick={() => update(true)} disabled={isPending}
-          className="flex items-center gap-1 text-xs bg-green-600 text-white px-3 py-1.5 rounded-lg hover:bg-green-700 disabled:opacity-60">
+          className="flex items-center gap-1 text-xs bg-[#123524] text-white px-3 py-1.5 rounded-lg hover:bg-[#1F6B4F] disabled:opacity-60">
           <CheckCircle className="w-3 h-3" /> 通過
         </button>
       )}

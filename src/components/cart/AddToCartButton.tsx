@@ -69,10 +69,10 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
       <div className="grid grid-cols-2 gap-3">
         <button
           onClick={handleAddToCart}
-          className={`flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all ${
+          className={`flex items-center justify-center gap-2 py-3 rounded-full font-semibold transition-all ${
             added
-              ? "bg-green-500 text-white"
-              : "bg-brand-600 hover:bg-brand-700 text-white"
+              ? "bg-[#1F6B4F] text-white"
+              : "bg-[#123524] hover:bg-[#1F6B4F] text-white"
           }`}
         >
           {added ? (
@@ -84,7 +84,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
         <a
           href="/checkout"
           onClick={handleAddToCart}
-          className="flex items-center justify-center py-3 rounded-xl font-medium border-2 border-brand-600 text-brand-700 hover:bg-brand-50 transition-colors"
+          className="flex items-center justify-center py-3 rounded-full font-semibold border border-[#C8A45D] text-[#C8A45D] hover:bg-[#C8A45D]/10 transition-colors"
         >
           立即購買
         </a>
@@ -107,7 +107,7 @@ function StockNotifyForm({ productId }: { productId: string }) {
     setSubmitted(true);
   }
 
-  if (submitted) return <p className="text-sm text-green-600">✓ 到貨時將通知您</p>;
+  if (submitted) return <p className="text-sm text-[#1F6B4F]">✓ 到貨時將通知您</p>;
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-2">

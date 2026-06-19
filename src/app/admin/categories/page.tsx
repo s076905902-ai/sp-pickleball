@@ -12,7 +12,7 @@ export default async function AdminCategoriesPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">分類管理</h1>
-        <Link href="/admin/categories/new" className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-green-700">
+        <Link href="/admin/categories/new" className="bg-[#123524] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-[#1F6B4F]">
           <Plus className="w-4 h-4" /> 新增分類
         </Link>
       </div>
@@ -39,7 +39,7 @@ export default async function AdminCategoriesPage() {
                 <td className="px-4 py-3 text-gray-500">{c.parent?.name ?? "（頂層）"}</td>
                 <td className="px-4 py-3 text-gray-600">{c._count.products}</td>
                 <td className="px-4 py-3">
-                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${c.isActive ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${c.isActive ? "bg-[#E0F0E8] text-[#0D2A1B]" : "bg-gray-100 text-gray-500"}`}>
                     {c.isActive ? "啟用" : "停用"}
                   </span>
                 </td>

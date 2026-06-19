@@ -122,7 +122,7 @@ export default function EditProductForm({ product, brands, categories }: {
             <Trash2 className="w-4 h-4" /> 刪除
           </button>
           <button type="submit" disabled={isPending}
-            className="bg-green-600 text-white px-5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-green-700 disabled:opacity-60">
+            className="bg-[#123524] text-white px-5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-[#1F6B4F] disabled:opacity-60">
             <Save className="w-4 h-4" />
             {isPending ? "儲存中..." : "儲存變更"}
           </button>

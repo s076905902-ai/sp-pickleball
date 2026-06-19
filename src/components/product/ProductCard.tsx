@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { formatPrice, SUITABLE_FOR_LABELS } from "@/lib/utils";
 
 interface ProductCardProps {
@@ -30,63 +30,73 @@ export default function ProductCard({ product, showScores = false }: ProductCard
       ? Math.round(((product.price - product.salePrice) / product.price) * 100)
       : null;
 
+  const displayPrice = product.salePrice ?? product.price;
+  const isOnSale = !!product.salePrice;
+
   return (
-    <article className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:border-brand-200 transition-all duration-200">
+    <article
+      className="group relative bg-white border border-[#E5E2D8] rounded-[20px] overflow-hidden transition-all duration-300 ease-out"
+      style={{
+        boxShadow: "0 18px 45px rgba(17,17,17,0.07)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 24px 60px rgba(17,17,17,0.13)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 18px 45px rgba(17,17,17,0.07)";
+      }}
+    >
       {/* Image */}
       <Link href={`/products/${product.slug}`} className="block">
-        <div className="relative aspect-square bg-gray-50 overflow-hidden">
+        <div className="relative aspect-square bg-[#FAFAF8] overflow-hidden">
           {product.mainImage ? (
             <Image
               src={product.mainImage}
               alt={`${product.name} 匹克球拍`}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+              className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-300">
+            <div className="w-full h-full flex items-center justify-center text-[#E5E2D8]">
               <span className="text-5xl">🏓</span>
             </div>
           )}
 
           {/* Badges */}
-          <div className="absolute top-2 left-2 flex flex-col gap-1">
+          <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             {discountPct && (
-              <span className="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">
+              <span className="bg-[#C8A45D] text-[#111111] text-xs font-bold px-2.5 py-1 rounded-full">
                 -{discountPct}%
               </span>
             )}
             {product.stock === 0 && (
-              <span className="bg-gray-500 text-white text-xs font-medium px-2 py-0.5 rounded">
+              <span className="bg-[#111111] text-[#FAFAF8] text-xs font-medium px-2.5 py-1 rounded-full">
                 售完
               </span>
             )}
           </div>
-
-          {/* Wishlist button */}
-          <button
-            aria-label="加入願望清單"
-            className="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-red-500"
-          >
-            <Heart className="w-4 h-4" />
-          </button>
         </div>
       </Link>
 
       {/* Info */}
-      <div className="p-3">
-        <p className="text-xs text-gray-500 mb-0.5">{product.brandName}</p>
+      <div className="p-4">
+        <p className="text-xs text-[#4B5563] mb-1 font-medium tracking-wide uppercase">
+          {product.brandName}
+        </p>
         <Link href={`/products/${product.slug}`}>
-          <h3 className="font-semibold text-sm text-gray-900 leading-tight line-clamp-2 hover:text-brand-700 transition-colors">
+          <h3 className="font-semibold text-sm text-[#111111] leading-tight line-clamp-2 hover:text-[#123524] transition-colors">
             {product.name}
           </h3>
         </Link>
 
         {/* Rating */}
         {product.averageRating && (
-          <div className="flex items-center gap-1 mt-1">
-            <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-            <span className="text-xs text-gray-600">
+          <div className="flex items-center gap-1 mt-1.5">
+            <Star className="w-3.5 h-3.5 fill-[#C8A45D] text-[#C8A45D]" />
+            <span className="text-xs text-[#4B5563]">
               {product.averageRating.toFixed(1)} ({product.reviewCount})
             </span>
           </div>
@@ -98,7 +108,7 @@ export default function ProductCard({ product, showScores = false }: ProductCard
             {product.suitableFor.slice(0, 2).map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] bg-brand-50 text-brand-700 px-1.5 py-0.5 rounded"
+                className="text-[10px] bg-[#F2F8F5] text-[#123524] px-2 py-0.5 rounded-full border border-[#BCDECF]"
               >
                 {SUITABLE_FOR_LABELS[tag] ?? tag}
               </span>
@@ -108,7 +118,7 @@ export default function ProductCard({ product, showScores = false }: ProductCard
 
         {/* Scores */}
         {showScores && (
-          <div className="mt-2 space-y-1">
+          <div className="mt-3 space-y-1.5">
             {product.controlScore != null && (
               <ScoreRow label="控制" value={product.controlScore} />
             )}
@@ -123,20 +133,20 @@ export default function ProductCard({ product, showScores = false }: ProductCard
 
         {/* Price */}
         <div className="mt-3 flex items-baseline gap-2">
-          <span className="font-bold text-base text-gray-900">
-            {formatPrice(product.salePrice ?? product.price)}
+          <span className="font-bold text-base text-[#123524]">
+            {formatPrice(displayPrice)}
           </span>
-          {product.salePrice && (
-            <span className="text-xs text-gray-400 line-through">
+          {isOnSale && (
+            <span className="text-xs text-[#4B5563] line-through">
               {formatPrice(product.price)}
             </span>
           )}
         </div>
 
-        {/* Add to cart */}
+        {/* CTA */}
         <Link
           href={`/products/${product.slug}`}
-          className="mt-3 block w-full text-center bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium py-2 rounded-lg transition-colors"
+          className="mt-3 block w-full text-center bg-[#123524] hover:bg-[#1F6B4F] text-white text-sm font-semibold py-2.5 rounded-full transition-colors duration-200"
         >
           {product.stock > 0 ? "立即選購" : "查看詳情"}
         </Link>
@@ -148,14 +158,14 @@ export default function ProductCard({ product, showScores = false }: ProductCard
 function ScoreRow({ label, value }: { label: string; value: number }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[10px] text-gray-500 w-8 shrink-0">{label}</span>
-      <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+      <span className="text-[10px] text-[#4B5563] w-8 shrink-0">{label}</span>
+      <div className="flex-1 h-1.5 bg-[#E5E2D8] rounded-full overflow-hidden">
         <div
-          className="h-full bg-brand-500 rounded-full"
+          className="h-full bg-[#1F6B4F] rounded-full"
           style={{ width: `${value}%` }}
         />
       </div>
-      <span className="text-[10px] text-gray-600 w-6 text-right">{value}</span>
+      <span className="text-[10px] text-[#4B5563] w-6 text-right">{value}</span>
     </div>
   );
 }

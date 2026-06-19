@@ -79,7 +79,7 @@ const statusColors: Record<string, string> = {
   PENDING_CONFIRM: "bg-blue-100 text-blue-700",
   PREPARING: "bg-indigo-100 text-indigo-700",
   SHIPPED: "bg-cyan-100 text-cyan-700",
-  COMPLETED: "bg-green-100 text-green-700",
+  COMPLETED: "bg-[#E0F0E8] text-[#0D2A1B]",
   CANCELLED: "bg-red-100 text-red-700",
   RETURNING: "bg-orange-100 text-orange-700",
   REFUNDED: "bg-gray-100 text-gray-700",

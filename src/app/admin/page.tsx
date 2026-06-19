@@ -22,7 +22,7 @@ export default async function AdminDashboard() {
 
   const stats = [
     { label: "上架商品", value: productCount, icon: Package, color: "bg-blue-500" },
-    { label: "全部訂單", value: orderCount, icon: ShoppingBag, color: "bg-green-500" },
+    { label: "全部訂單", value: orderCount, icon: ShoppingBag, color: "bg-[#1F6B4F]" },
     { label: "待付款", value: pendingOrders, icon: AlertCircle, color: "bg-yellow-500" },
     { label: "待審評價", value: pendingReviews, icon: Star, color: "bg-purple-500" },
   ];
@@ -93,7 +93,7 @@ const statusColors: Record<string, string> = {
   PENDING_CONFIRM: "bg-blue-100 text-blue-700",
   PREPARING: "bg-indigo-100 text-indigo-700",
   SHIPPED: "bg-cyan-100 text-cyan-700",
-  COMPLETED: "bg-green-100 text-green-700",
+  COMPLETED: "bg-[#E0F0E8] text-[#0D2A1B]",
   CANCELLED: "bg-red-100 text-red-700",
   RETURNING: "bg-orange-100 text-orange-700",
   REFUNDED: "bg-gray-100 text-gray-700",

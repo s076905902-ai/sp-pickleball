@@ -18,7 +18,7 @@ export default async function AdminFaqsPage() {
           <h1 className="text-2xl font-bold text-gray-900">FAQ 管理</h1>
           <p className="text-sm text-gray-500 mt-1">各商品的常見問題儲存於商品編輯頁</p>
         </div>
-        <Link href="/admin/products" className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-green-700">
+        <Link href="/admin/products" className="bg-[#123524] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-[#1F6B4F]">
           <Plus className="w-4 h-4" /> 前往商品編輯
         </Link>
       </div>

@@ -2,24 +2,34 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container-padded py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-[#111111] text-[#FAFAF8]/70">
+      <div className="container-padded pt-16 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg mb-3">
-              <span>🏓</span> SP Pickleball
+            <Link href="/" className="inline-flex items-center gap-2 mb-4">
+              <span className="text-[#C8A45D] text-2xl font-black">SP</span>
+              <span className="text-[#FAFAF8] font-semibold text-lg">Pickleball</span>
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              台灣最完整的匹克球拍購物與知識平台。專業評測，幫你找到最適合的球拍。
+            <p className="text-sm leading-relaxed text-[#FAFAF8]/50 mb-5">
+              台灣最專業的匹克球拍購物與知識平台。頂級品牌、專業評測、AI 選拍顧問，為你找到完美球拍。
             </p>
-            <div className="flex gap-3 mt-4">
-              <a href="https://line.me/ti/p/@sppickleball" target="_blank" rel="noopener noreferrer"
-                className="bg-green-500 text-white text-xs px-3 py-1.5 rounded-full font-medium hover:bg-green-600 transition-colors">
+            <div className="flex gap-3">
+              <a
+                href="https://line.me/ti/p/@sppickleball"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-[#C8A45D] text-[#111111] text-xs px-4 py-2 rounded-full font-semibold hover:bg-[#B89245] transition-colors"
+              >
                 LINE 客服
               </a>
-              <a href="https://www.instagram.com/sppickleball" target="_blank" rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a
+                href="https://www.instagram.com/sppickleball"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FAFAF8]/40 hover:text-[#C8A45D] text-sm transition-colors flex items-center"
+              >
                 Instagram
               </a>
             </div>
@@ -27,8 +37,10 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">球拍分類</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-[#FAFAF8] font-semibold text-xs uppercase tracking-widest mb-5">
+              球拍分類
+            </h3>
+            <ul className="space-y-3 text-sm">
               {[
                 { href: "/categories/beginner", label: "新手入門" },
                 { href: "/categories/intermediate", label: "中階球拍" },
@@ -38,7 +50,10 @@ export default function Footer() {
                 { href: "/compare", label: "球拍比較" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link
+                    href={item.href}
+                    className="hover:text-[#C8A45D] transition-colors"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -48,8 +63,10 @@ export default function Footer() {
 
           {/* Knowledge */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">知識資源</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-[#FAFAF8] font-semibold text-xs uppercase tracking-widest mb-5">
+              知識資源
+            </h3>
+            <ul className="space-y-3 text-sm">
               {[
                 { href: "/blog", label: "球拍評測" },
                 { href: "/faq", label: "常見問題" },
@@ -59,7 +76,10 @@ export default function Footer() {
                 { href: "/academy/venues", label: "場地資訊" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link
+                    href={item.href}
+                    className="hover:text-[#C8A45D] transition-colors"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -69,8 +89,10 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">購物服務</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-[#FAFAF8] font-semibold text-xs uppercase tracking-widest mb-5">
+              購物服務
+            </h3>
+            <ul className="space-y-3 text-sm">
               {[
                 { href: "/shipping", label: "運費說明" },
                 { href: "/returns", label: "退換貨政策" },
@@ -80,7 +102,10 @@ export default function Footer() {
                 { href: "/terms", label: "服務條款" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link
+                    href={item.href}
+                    className="hover:text-[#C8A45D] transition-colors"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -90,10 +115,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-gray-800">
-        <div className="container-padded py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-500">
+      <div className="border-t border-white/8">
+        <div className="container-padded py-5 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-[#FAFAF8]/30">
           <p>© {new Date().getFullYear()} SP Pickleball. All rights reserved.</p>
-          <p>匹克球拍 | Pickleball Paddle Taiwan</p>
+          <p>匹克球拍 · Pickleball Paddle Taiwan</p>
         </div>
       </div>
     </footer>

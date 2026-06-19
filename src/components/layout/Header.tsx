@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, ShoppingCart, Heart, Search, User, ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
+import { Menu, X, ShoppingCart, Search, User, ChevronDown } from "lucide-react";
 
 const navigation = [
   {
@@ -24,10 +23,7 @@ const navigation = [
       { label: "所有品牌", href: "/brands" },
     ],
   },
-  {
-    label: "比較",
-    href: "/compare",
-  },
+  { label: "比較", href: "/compare" },
   {
     label: "知識庫",
     href: "/blog",
@@ -37,118 +33,150 @@ const navigation = [
       { label: "技術提升", href: "/blog?tag=technique" },
     ],
   },
-  {
-    label: "AI 顧問",
-    href: "/ai",
-  },
-  {
-    label: "Academy",
-    href: "/academy",
-  },
+  { label: "AI 顧問", href: "/ai" },
+  { label: "Academy", href: "/academy" },
 ];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 shadow-sm">
+    <header className="sticky top-0 z-50 w-full">
       {/* Announcement bar */}
-      <div className="bg-brand-600 text-white text-xs text-center py-1.5 px-4">
-        🏓 全台免運 | 訂單滿 $2,000 送球手套 | LINE 客服即時回覆
+      <div className="bg-[#0D2A1B] text-[#C8A45D] text-xs text-center py-2 px-4 font-medium tracking-wide">
+        全台免運 &nbsp;·&nbsp; 訂單滿 $2,000 贈球手套 &nbsp;·&nbsp; LINE 客服即時回覆
       </div>
 
-      <div className="container-padded">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-brand-700">
-            <span className="text-2xl">🏓</span>
-            <span>SP Pickleball</span>
-          </Link>
+      {/* Main bar */}
+      <div
+        className={`bg-[#111111] transition-shadow duration-300 ${
+          scrolled ? "shadow-[0_4px_24px_rgba(0,0,0,0.4)]" : ""
+        }`}
+        style={{ backdropFilter: "blur(12px)" }}
+      >
+        <div className="container-padded">
+          <div className="flex h-16 items-center justify-between">
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navigation.map((item) => (
-              <div
-                key={item.href}
-                className="relative"
-                onMouseEnter={() => item.children && setOpenDropdown(item.label)}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <Link
-                  href={item.href}
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-600 rounded-md hover:bg-gray-50 transition-colors"
-                >
-                  {item.label}
-                  {item.children && <ChevronDown className="w-3.5 h-3.5" />}
-                </Link>
-
-                {item.children && openDropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-1 w-48 rounded-lg shadow-lg border bg-white py-1 z-50">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            <Link href="/products?search=1" aria-label="搜尋" className="p-2 text-gray-600 hover:text-brand-600 transition-colors">
-              <Search className="w-5 h-5" />
-            </Link>
-            <Link href="/wishlist" aria-label="願望清單" className="p-2 text-gray-600 hover:text-brand-600 transition-colors hidden sm:block">
-              <Heart className="w-5 h-5" />
-            </Link>
-            <Link href="/cart" aria-label="購物車" className="relative p-2 text-gray-600 hover:text-brand-600 transition-colors">
-              <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-brand-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold cart-count hidden">
-                0
-              </span>
-            </Link>
-            <Link href="/account" aria-label="會員" className="p-2 text-gray-600 hover:text-brand-600 transition-colors hidden sm:block">
-              <User className="w-5 h-5" />
-            </Link>
-
-            {/* Mobile menu toggle */}
-            <button
-              className="lg:hidden p-2 text-gray-600"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="選單"
+            {/* Logo */}
+            <Link
+              href="/"
+              className="flex items-center gap-2 font-bold text-xl tracking-tight"
             >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              <span className="text-[#C8A45D] text-2xl font-black">SP</span>
+              <span className="text-[#FAFAF8] font-semibold">Pickleball</span>
+            </Link>
+
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-0.5">
+              {navigation.map((item) => (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => item.children && setOpenDropdown(item.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <Link
+                    href={item.href}
+                    className="flex items-center gap-1 px-3.5 py-2 text-sm font-medium text-[#FAFAF8]/80 hover:text-[#C8A45D] rounded-md transition-colors duration-150"
+                  >
+                    {item.label}
+                    {item.children && (
+                      <ChevronDown className="w-3.5 h-3.5 opacity-60" />
+                    )}
+                  </Link>
+
+                  {item.children && openDropdown === item.label && (
+                    <div className="absolute top-full left-0 mt-1 w-48 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-white/10 bg-[#1A1A1A] py-2 z-50 overflow-hidden">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block px-4 py-2.5 text-sm text-[#FAFAF8]/70 hover:text-[#C8A45D] hover:bg-white/5 transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+
+            {/* Actions */}
+            <div className="flex items-center gap-1">
+              <Link
+                href="/products?search=1"
+                aria-label="搜尋"
+                className="p-2 text-[#FAFAF8]/60 hover:text-[#C8A45D] transition-colors"
+              >
+                <Search className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/cart"
+                aria-label="購物車"
+                className="relative p-2 text-[#FAFAF8]/60 hover:text-[#C8A45D] transition-colors"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#C8A45D] text-[#111111] text-[10px] rounded-full flex items-center justify-center font-bold cart-count hidden">
+                  0
+                </span>
+              </Link>
+              <Link
+                href="/account"
+                aria-label="會員"
+                className="p-2 text-[#FAFAF8]/60 hover:text-[#C8A45D] transition-colors hidden sm:block"
+              >
+                <User className="w-5 h-5" />
+              </Link>
+
+              {/* Shop CTA */}
+              <Link
+                href="/products"
+                className="hidden md:inline-flex items-center gap-1.5 ml-3 bg-[#C8A45D] text-[#111111] text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#B89245] transition-colors"
+              >
+                立即選購
+              </Link>
+
+              {/* Mobile toggle */}
+              <button
+                className="lg:hidden p-2 text-[#FAFAF8]/60 hover:text-[#C8A45D] transition-colors"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="選單"
+              >
+                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t bg-white px-4 pb-4">
+        <div className="lg:hidden bg-[#1A1A1A] border-t border-white/10 px-4 pb-6">
           {navigation.map((item) => (
             <div key={item.href}>
               <Link
                 href={item.href}
-                className="flex items-center justify-between py-3 text-sm font-medium text-gray-800 border-b border-gray-100"
+                className="flex items-center justify-between py-3.5 text-sm font-medium text-[#FAFAF8]/80 border-b border-white/8 hover:text-[#C8A45D] transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
               </Link>
               {item.children && (
-                <div className="pl-4">
+                <div className="pl-4 bg-[#111111]/50">
                   {item.children.map((child) => (
                     <Link
                       key={child.href}
                       href={child.href}
-                      className="block py-2 text-sm text-gray-600"
+                      className="block py-2.5 text-sm text-[#FAFAF8]/50 hover:text-[#C8A45D] transition-colors"
                       onClick={() => setMobileOpen(false)}
                     >
                       {child.label}
@@ -158,6 +186,13 @@ export default function Header() {
               )}
             </div>
           ))}
+          <Link
+            href="/products"
+            className="mt-4 block text-center bg-[#C8A45D] text-[#111111] font-bold py-3 rounded-full text-sm hover:bg-[#B89245] transition-colors"
+            onClick={() => setMobileOpen(false)}
+          >
+            立即選購
+          </Link>
         </div>
       )}
     </header>

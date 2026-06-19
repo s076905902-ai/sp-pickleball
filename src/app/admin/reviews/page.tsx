@@ -34,7 +34,7 @@ export default async function AdminReviewsPage() {
 
       <div>
         <h2 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-          <span className="w-2 h-2 bg-green-400 rounded-full inline-block"></span>
+          <span className="w-2 h-2 bg-[#1F6B4F] rounded-full inline-block"></span>
           已發布評價
         </h2>
         {published.length === 0 ? (

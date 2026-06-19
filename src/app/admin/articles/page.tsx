@@ -9,14 +9,14 @@ export default async function AdminArticlesPage() {
     include: { author: { select: { name: true } } },
   });
 
-  const statusMap: Record<string, string> = { PUBLISHED: "bg-green-100 text-green-700", DRAFT: "bg-gray-100 text-gray-600", ARCHIVED: "bg-red-100 text-red-600" };
+  const statusMap: Record<string, string> = { PUBLISHED: "bg-[#E0F0E8] text-[#0D2A1B]", DRAFT: "bg-gray-100 text-gray-600", ARCHIVED: "bg-red-100 text-red-600" };
   const statusLabel: Record<string, string> = { PUBLISHED: "已發布", DRAFT: "草稿", ARCHIVED: "已封存" };
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">文章管理</h1>
-        <Link href="/admin/articles/new" className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-green-700">
+        <Link href="/admin/articles/new" className="bg-[#123524] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-[#1F6B4F]">
           <Plus className="w-4 h-4" /> 新增文章
         </Link>
       </div>
@@ -50,7 +50,7 @@ export default async function AdminArticlesPage() {
                 <td className="px-4 py-3">
                   <div className="flex gap-2">
                     <Link href={`/admin/articles/${a.id}`} className="p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded"><Edit className="w-4 h-4" /></Link>
-                    <Link href={`/articles/${a.slug}`} target="_blank" className="p-1.5 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded"><Eye className="w-4 h-4" /></Link>
+                    <Link href={`/articles/${a.slug}`} target="_blank" className="p-1.5 text-gray-500 hover:text-[#123524] hover:bg-[#F2F8F5] rounded"><Eye className="w-4 h-4" /></Link>
                   </div>
                 </td>
               </tr>

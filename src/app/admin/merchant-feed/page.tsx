@@ -68,7 +68,7 @@ export default async function AdminMerchantFeedPage() {
                 <td className="px-4 py-3 text-gray-500 font-mono text-xs">{p.sku}</td>
                 <td className="px-4 py-3">
                   {p.gtin ? (
-                    <span className="text-green-600 font-mono text-xs">{p.gtin}</span>
+                    <span className="text-[#1F6B4F] font-mono text-xs">{p.gtin}</span>
                   ) : (
                     <span className="text-red-400 text-xs">未設定</span>
                   )}
@@ -82,7 +82,7 @@ export default async function AdminMerchantFeedPage() {
                 </td>
                 <td className="px-4 py-3">
                   {p.mainImage ? (
-                    <span className="text-green-600 text-xs">✓</span>
+                    <span className="text-[#1F6B4F] text-xs">✓</span>
                   ) : (
                     <span className="text-red-400 text-xs">缺圖</span>
                   )}

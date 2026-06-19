@@ -31,7 +31,7 @@ export default function NewArticlePage() {
           <Link href="/admin/articles" className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg"><ArrowLeft className="w-5 h-5" /></Link>
           <h1 className="text-2xl font-bold text-gray-900">新增文章</h1>
         </div>
-        <button type="submit" disabled={isPending} className="bg-green-600 text-white px-5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-green-700 disabled:opacity-60">
+        <button type="submit" disabled={isPending} className="bg-[#123524] text-white px-5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-[#1F6B4F] disabled:opacity-60">
           <Save className="w-4 h-4" />{isPending ? "儲存中..." : "儲存文章"}
         </button>
       </div>

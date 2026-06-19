@@ -44,7 +44,7 @@ export default async function BrandsPage() {
               </div>
             ) : (
               <div className="h-48 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
-                <span className="text-4xl font-bold text-green-600 opacity-30">
+                <span className="text-4xl font-bold text-[#123524] opacity-30">
                   {brand.name.charAt(0)}
                 </span>
               </div>
@@ -56,14 +56,14 @@ export default async function BrandsPage() {
                   <Image src={brand.logo} alt={`${brand.name} logo`} fill className="object-contain object-left" />
                 </div>
               )}
-              <h2 className="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors mb-1">
+              <h2 className="text-lg font-bold text-gray-900 group-hover:text-[#123524] transition-colors mb-1">
                 {brand.name}
               </h2>
               {brand.country && (
                 <p className="text-xs text-gray-400 mb-2">🌍 {brand.country}{brand.foundedYear ? ` · 成立於 ${brand.foundedYear}` : ""}</p>
               )}
               <p className="text-sm text-gray-500 line-clamp-2 mb-3">{brand.description}</p>
-              <span className="text-xs font-medium text-green-600 bg-green-50 px-2.5 py-1 rounded-full">
+              <span className="text-xs font-medium text-[#123524] bg-[#F2F8F5] px-2.5 py-1 rounded-full">
                 {brand._count.products} 個商品
               </span>
             </div>

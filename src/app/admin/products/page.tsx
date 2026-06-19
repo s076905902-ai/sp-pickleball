@@ -60,7 +60,7 @@ export default async function AdminProductsPage() {
                     <Link href={`/admin/products/${p.id}`} className="p-1.5 text-gray-500 hover:text-brand-600 hover:bg-brand-50 rounded">
                       <Edit className="w-4 h-4" />
                     </Link>
-                    <Link href={`/products/${p.slug}`} target="_blank" className="p-1.5 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded">
+                    <Link href={`/products/${p.slug}`} target="_blank" className="p-1.5 text-gray-500 hover:text-[#123524] hover:bg-[#F2F8F5] rounded">
                       <Eye className="w-4 h-4" />
                     </Link>
                   </div>
@@ -76,7 +76,7 @@ export default async function AdminProductsPage() {
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    PUBLISHED: "bg-green-100 text-green-700",
+    PUBLISHED: "bg-[#E0F0E8] text-[#0D2A1B]",
     DRAFT: "bg-gray-100 text-gray-600",
     ARCHIVED: "bg-red-100 text-red-600",
   };

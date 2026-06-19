@@ -147,7 +147,7 @@ export default function CheckoutPage() {
                   className="text-brand-600"
                 />
                 <span className="text-sm font-medium text-gray-900">{m.label}</span>
-                <span className="ml-auto text-sm text-green-600 font-medium">免運</span>
+                <span className="ml-auto text-sm text-[#1F6B4F] font-medium">免運</span>
               </label>
             ))}
           </div>
@@ -203,10 +203,4 @@ export default function CheckoutPage() {
 function Field({ label, children, required }: { label: string; children: React.ReactNode; required?: boolean }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        {label}{required && <span className="text-red-500 ml-0.5">*</span>}
-      </label>
-      {children}
-    </div>
-  );
-}
+      <label className="b
