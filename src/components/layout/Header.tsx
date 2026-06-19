@@ -151,4 +151,54 @@ export default function Header() {
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label="選單"
               >
-                {mobileOpen ? <X className="w-5 h-5" /> : <Menu class
+                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="lg:hidden bg-[#1A1A1A] border-t border-white/10">
+          <div className="container-padded py-4 space-y-1">
+            {navigation.map((item) => (
+              <div key={item.href}>
+                <Link
+                  href={item.href}
+                  className="block py-2.5 text-sm font-medium text-[#FAFAF8]/80 hover:text-[#C8A45D] transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </Link>
+                {item.children && (
+                  <div className="pl-4 space-y-1">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="block py-1.5 text-sm text-[#FAFAF8]/50 hover:text-[#C8A45D] transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <div className="pt-4 border-t border-white/10">
+              <Link
+                href="/products"
+                className="block text-center bg-[#C8A45D] text-[#111111] text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-[#B89245] transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                立即選購
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}

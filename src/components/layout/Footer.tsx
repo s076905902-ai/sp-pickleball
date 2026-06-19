@@ -50,10 +50,7 @@ export default function Footer() {
                 { href: "/compare", label: "球拍比較" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="hover:text-[#C8A45D] transition-colors"
-                  >
+                  <Link href={item.href} className="hover:text-[#C8A45D] transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -76,10 +73,7 @@ export default function Footer() {
                 { href: "/academy/venues", label: "場地資訊" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="hover:text-[#C8A45D] transition-colors"
-                  >
+                  <Link href={item.href} className="hover:text-[#C8A45D] transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -102,6 +96,24 @@ export default function Footer() {
                 { href: "/terms", label: "服務條款" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-      
+                  <Link href={item.href} className="hover:text-[#C8A45D] transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-white/10 mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#FAFAF8]/40">
+          <p>© 2025 SP Pickleball. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="hover:text-[#C8A45D] transition-colors">隱私政策</Link>
+            <Link href="/terms" className="hover:text-[#C8A45D] transition-colors">服務條款</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
