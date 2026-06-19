@@ -44,7 +44,7 @@ export default function ProductImageGallery({ mainImage, gallery, productName }:
               onClick={() => setSelected(img)}
               className={`relative w-16 h-16 flex-shrink-0 border-2 rounded-lg overflow-hidden bg-gray-50 transition-all ${
                 selected === img
-                  ? "border-brand-500 shadow-sm"
+                  ? "border-[#123524] shadow-sm"
                   : "border-transparent hover:border-gray-300"
               }`}
             >
