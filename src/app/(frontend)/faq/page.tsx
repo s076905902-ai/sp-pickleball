@@ -4,6 +4,9 @@ import { buildMetadata } from "@/lib/seo";
 import { faqPageSchema, breadcrumbSchema } from "@/lib/schema-markup";
 import JsonLd from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = buildMetadata({
   title: "常見問題 FAQ",
   description: "SP Pickleball 常見問題解答，包含球拍選購、運費說明、退換貨政策、下訂流程等。",

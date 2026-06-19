@@ -4,6 +4,9 @@ import Image from "next/image";
 import prisma from "@/lib/prisma";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = buildMetadata({
   title: "品牌總覽 — SP Pickleball",
   description: "探索 SP Pickleball 代理的頂級匹克球品牌，包含 Selkirk Sports、Everyday Social、ProKennex、RPM 等國際知名品牌。",

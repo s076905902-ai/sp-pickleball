@@ -8,14 +8,12 @@ import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
 import SortSelect from "@/components/product/SortSelect";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ sort?: string; page?: string }>;
-}
-
-export async function generateStaticParams() {
-  const cats = await prisma.category.findMany({ select: { slug: true } });
-  return cats.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

@@ -8,12 +8,10 @@ import { breadcrumbSchema, faqPageSchema } from "@/lib/schema-markup";
 import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
 
-interface PageProps { params: Promise<{ slug: string }> }
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-export async function generateStaticParams() {
-  const brands = await prisma.brand.findMany({ select: { slug: true } });
-  return brands.map((b) => ({ slug: b.slug }));
-}
+interface PageProps { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
