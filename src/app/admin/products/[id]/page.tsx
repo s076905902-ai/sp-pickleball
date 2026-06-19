@@ -17,9 +17,17 @@ export default async function EditProductPage({
 
   if (!product) notFound();
 
+  // Serialize Decimal → number so EditProductForm receives plain JS numbers
+  const serialized = {
+    ...product,
+    price: Number(product.price),
+    salePrice: product.salePrice ? Number(product.salePrice) : null,
+    status: product.status as string,
+  };
+
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <EditProductForm product={product} brands={brands} categories={categories} />
+      <EditProductForm product={serialized} brands={brands} categories={categories} />
     </div>
   );
 }
