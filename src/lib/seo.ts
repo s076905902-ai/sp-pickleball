@@ -71,4 +71,18 @@ export function buildBreadcrumbItems(
   };
 }
 
+/** Strip HTML tags and decode common entities for use in meta tags */
+export function stripHtml(html: string | null | undefined): string {
+  if (!html) return "";
+  return html
+    .replace(/<[^>]+>/g, " ")         // remove tags
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, " ")             // collapse whitespace
+    .trim();
+}
+
 export { SITE_NAME, SITE_URL, SITE_DESCRIPTION, OG_DEFAULT };

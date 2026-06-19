@@ -30,6 +30,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
+// Skill-level category slugs map to SuitableFor enum values
+const SLUG_TO_SUITABLE: Record<string, string> = {
+  beginner: "BEGINNER",
+  intermediate: "INTERMEDIATE",
+  advanced: "ADVANCED",
+  female: "FEMALE",
+  "tennis-convert": "TENNIS_CONVERT",
+  doubles: "DOUBLES",
+  singles: "SINGLES",
+};
+
 export default async function CategoryPage({ params, searchParams }: PageProps) {
   const { slug } = await params;
   const sp = await searchParams;
@@ -40,9 +51,15 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
   if (!category) notFound();
 
+  // For skill-level slugs use suitableFor filter; otherwise use categoryId
+  const suitableForValue = SLUG_TO_SUITABLE[slug];
+  const productWhere = suitableForValue
+    ? { suitableFor: { has: suitableForValue as any }, status: "PUBLISHED" as const }
+    : { categoryId: category.id, status: "PUBLISHED" as const };
+
   const [products, total, geoContent] = await Promise.all([
     prisma.product.findMany({
-      where: { categoryId: category.id, status: "PUBLISHED" },
+      where: productWhere,
       skip: (page - 1) * perPage,
       take: perPage,
       orderBy: sp.sort === "price_asc" ? { price: "asc" }
@@ -50,7 +67,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
              : { isFeatured: "desc" },
       include: { brand: true, category: true },
     }),
-    prisma.product.count({ where: { categoryId: category.id, status: "PUBLISHED" } }),
+    prisma.product.count({ where: productWhere }),
     prisma.geoContent.findUnique({ where: { entityId: category.id } }),
   ]);
 

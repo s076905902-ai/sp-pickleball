@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, stripHtml } from "@/lib/seo";
 import { productSchema, faqPageSchema, breadcrumbSchema } from "@/lib/schema-markup";
 import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
@@ -34,9 +34,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const seoMeta = await prisma.seoMeta.findUnique({ where: { entityId: product.id } });
   return buildMetadata({
     title: seoMeta?.title ?? `${product.name} — ${product.brand.name} 匹克球拍`,
-    description:
+    description: stripHtml(
       seoMeta?.description ??
-      `${product.name} 評測規格：重量 ${product.weight ?? "—"}g、厚度 ${product.thickness ?? "—"}mm。${product.description?.slice(0, 100) ?? ""}`,
+      `${product.name} 評測規格：重量 ${product.weight ?? "—"}g、厚度 ${product.thickness ?? "—"}mm。${product.description?.slice(0, 100) ?? ""}`
+    ),
     canonical: `/products/${slug}`,
     ogImage: seoMeta?.ogImage ?? product.mainImage ?? undefined,
     type: "product",
