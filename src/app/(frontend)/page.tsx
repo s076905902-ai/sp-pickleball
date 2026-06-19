@@ -193,7 +193,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Categories ────────────────────────────────────────── */}
-      <section className="section-gap bg-white">
+      <section className="section-gap bg-[#F7F6F2]">
         <div className="container-padded">
           <div className="text-center mb-12">
             <p className="text-xs text-[#1F6B4F] font-semibold tracking-widest uppercase mb-2">
@@ -207,7 +207,7 @@ export default async function HomePage() {
               <Link
                 key={cat.href}
                 href={cat.href}
-                className="group bg-[#FAFAF8] border border-[#E5E2D8] rounded-2xl p-6 hover:border-[#123524] hover:shadow-[0_8px_32px_rgba(18,53,36,0.1)] transition-all duration-200"
+                className="group bg-white border border-[#E5E2D8] rounded-2xl p-6 hover:border-[#123524] hover:shadow-[0_8px_32px_rgba(18,53,36,0.1)] transition-all duration-200"
               >
                 <div className="text-3xl mb-3">{cat.icon}</div>
                 <h3 className="font-bold text-[#111111] mb-1">{cat.label}</h3>
@@ -223,18 +223,18 @@ export default async function HomePage() {
 
       {/* ── Brands ────────────────────────────────────────────── */}
       {brands.length > 0 && (
-        <section className="section-gap bg-[#FAFAF8]">
+        <section className="section-gap bg-[#111111]">
           <div className="container-padded">
             <div className="flex items-end justify-between mb-10">
               <div>
-                <p className="text-xs text-[#1F6B4F] font-semibold tracking-widest uppercase mb-2">
+                <p className="text-xs text-[#C8A45D] font-semibold tracking-widest uppercase mb-2">
                   頂級代理
                 </p>
-                <h2 className="text-2xl font-bold text-[#111111]">精選品牌</h2>
+                <h2 className="text-2xl font-bold text-[#FAFAF8]">精選品牌</h2>
               </div>
               <Link
                 href="/brands"
-                className="text-[#123524] text-sm font-medium flex items-center gap-1.5 hover:text-[#1F6B4F] transition-colors group"
+                className="text-[#C8A45D] text-sm font-medium flex items-center gap-1.5 hover:text-[#FAFAF8] transition-colors group"
               >
                 所有品牌{" "}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -245,7 +245,7 @@ export default async function HomePage() {
                 <Link
                   key={b.id}
                   href={`/brands/${b.slug}`}
-                  className="bg-white border border-[#E5E2D8] rounded-2xl p-4 flex items-center justify-center aspect-square hover:border-[#123524] hover:shadow-[0_8px_24px_rgba(18,53,36,0.1)] transition-all"
+                  className="bg-white/8 border border-white/12 rounded-2xl p-4 flex items-center justify-center aspect-square hover:bg-white/15 hover:border-[#C8A45D]/50 transition-all"
                 >
                   {b.logo ? (
                     <Image
@@ -253,10 +253,10 @@ export default async function HomePage() {
                       alt={`${b.name} 品牌`}
                       width={80}
                       height={80}
-                      className="object-contain"
+                      className="object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
                     />
                   ) : (
-                    <span className="font-bold text-sm text-[#111111] text-center leading-tight">
+                    <span className="font-bold text-sm text-[#FAFAF8] text-center leading-tight">
                       {b.name}
                     </span>
                   )}
