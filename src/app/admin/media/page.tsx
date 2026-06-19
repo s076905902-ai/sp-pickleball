@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma";
 import { Image as ImageIcon } from "lucide-react";
+import MediaGrid from "./MediaGrid";
 
 export default async function AdminMediaPage() {
-  // Collect all images from products and brands
   const [products, brands] = await Promise.all([
     prisma.product.findMany({ select: { id: true, name: true, mainImage: true, gallery: true }, where: { mainImage: { not: null } }, take: 100 }),
     prisma.brand.findMany({ select: { id: true, name: true, logo: true, coverImage: true }, take: 50 }),
@@ -37,20 +37,7 @@ export default async function AdminMediaPage() {
           <p className="text-gray-400">尚無圖片，請先為商品或品牌設定圖片網址</p>
         </div>
       ) : (
-        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4">
-          {images.map((img, i) => (
-            <div key={i} className="bg-white border rounded-xl overflow-hidden group">
-              <div className="aspect-square bg-gray-50 flex items-center justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img.src} alt={img.label} className="w-full h-full object-contain p-2" onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
-              </div>
-              <div className="p-2">
-                <p className="text-xs font-medium text-gray-700 truncate">{img.label}</p>
-                <p className="text-xs text-gray-400">{img.type}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <MediaGrid images={images} />
       )}
     </div>
   );
