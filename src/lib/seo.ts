@@ -30,7 +30,7 @@ export function buildMetadata({
   const image = ogImage ?? OG_DEFAULT;
 
   return {
-    title: fullTitle,
+    title: { absolute: fullTitle },
     description: metaDesc,
     keywords,
     metadataBase: new URL(SITE_URL),
@@ -39,7 +39,7 @@ export function buildMetadata({
       ? { index: false, follow: false }
       : { index: true, follow: true, "max-image-preview": "large" },
     openGraph: {
-      title: fullTitle,
+      title: fullTitle as string,
       description: metaDesc,
       url: canonicalUrl,
       siteName: SITE_NAME,
@@ -49,7 +49,7 @@ export function buildMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: fullTitle as string,
       description: metaDesc,
       images: [image],
     },
