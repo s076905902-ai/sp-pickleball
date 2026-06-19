@@ -61,28 +61,47 @@ export default function CheckoutPage() {
     return (
       <div className="container-padded py-20 text-center max-w-lg mx-auto">
         <div className="text-6xl mb-4">✅</div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-3">訂單建立成功！</h1>
-        <p className="text-gray-600 mb-6">
-          請在 24 小時內完成匯款，匯款後請至訂單頁面通知我們。
+        <h1 className="text-2xl font-bold text-[#111111] mb-3">訂單建立成功！</h1>
+        <p className="text-[#4B5563] mb-2">
+          謝謝您的訂購！
         </p>
-        <div className="bg-brand-50 border border-[#E0F0E8] rounded-xl p-6 mb-6 text-left">
-          <h2 className="font-bold text-[#0D2A1B] mb-3">匯款資訊</h2>
-          <div className="space-y-1 text-sm text-brand-700">
-            <p>銀行：○○銀行（代碼：XXX）</p>
-            <p>帳號：XXXX-XXXX-XXXX-XXXX</p>
-            <p>戶名：SP Pickleball 有限公司</p>
-          </div>
+        <p className="text-sm text-[#4B5563] mb-8 leading-relaxed">
+          請點擊下方按鈕加入 LINE，並提供您的訂單編號，
+          <br />我們將由專人提供匯款帳號與後續付款流程。
+        </p>
+
+        {/* LINE CTA */}
+        <a
+          href="https://line.me/ti/p/QfXjVSMKha"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-[#123524] text-white font-bold px-8 py-4 rounded-full hover:bg-[#1F6B4F] transition-colors text-base mb-6"
+        >
+          前往 LINE 通知付款
+        </a>
+
+        {/* Order ID */}
+        <div className="bg-[#F2F8F5] border border-[#BCDECF] rounded-xl p-4 mb-6 text-sm">
+          <p className="text-[#4B5563]">您的訂單編號</p>
+          <p className="font-mono font-bold text-[#123524] mt-1 text-lg">{orderId}</p>
         </div>
+
+        {/* Security notice */}
+        <p className="text-xs text-[#4B5563]/60 mb-8 leading-relaxed px-4">
+          為保障您的交易安全，請勿將款項匯入非官方提供之帳號。
+          <br />完成匯款後，請回傳訂單編號與匯款末五碼，以利我們確認訂單。
+        </p>
+
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href={`/orders/${orderId}`}
-            className="bg-brand-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-700 transition-colors"
+            className="bg-[#123524] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#1F6B4F] transition-colors"
           >
             查看訂單
           </a>
           <a
             href="/products"
-            className="border px-6 py-3 rounded-xl font-medium hover:bg-gray-50 transition-colors"
+            className="border border-[#E5E2D8] px-6 py-3 rounded-full font-semibold hover:bg-gray-50 transition-colors text-[#4B5563]"
           >
             繼續購物
           </a>

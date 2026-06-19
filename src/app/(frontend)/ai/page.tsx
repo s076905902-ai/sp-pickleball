@@ -39,6 +39,19 @@ export default function AiPage() {
 
           <AiAdvisor />
 
+          {/* LINE CTA */}
+          <div className="mt-8 bg-[#F2F8F5] border border-[#BCDECF] rounded-2xl p-6 text-center">
+            <p className="text-sm text-[#123524] font-medium mb-3">想要更個人化的建議？直接詢問我們</p>
+            <a
+              href="https://line.me/ti/p/QfXjVSMKha"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#123524] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#1F6B4F] transition-colors"
+            >
+              加 LINE 請教選拍
+            </a>
+          </div>
+
           {/* FAQ */}
           <div className="mt-16">
             <h2 className="text-lg font-bold text-gray-900 mb-4">常見問題</h2>

@@ -205,10 +205,20 @@ export default async function ProductPage({ params }: PageProps) {
             {/* Add to cart */}
             <AddToCartButton product={{ id: product.id, name: product.name, stock: product.stock }} />
 
+            {/* LINE CTA */}
+            <a
+              href="https://line.me/ti/p/QfXjVSMKha"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2 w-full border border-[#123524] text-[#123524] font-semibold py-3 rounded-full hover:bg-[#F2F8F5] transition-colors text-sm"
+            >
+              💬 LINE 詢問庫存 / 選拍建議
+            </a>
+
             {/* Trust */}
             <div className="mt-5 flex flex-col gap-2 text-sm text-gray-500">
-              <div className="flex items-center gap-2"><Truck className="w-4 h-4 text-brand-500" /> 全台免運費</div>
-              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-brand-500" /> 原廠保固，品質保證</div>
+              <div className="flex items-center gap-2"><Truck className="w-4 h-4 text-[#1F6B4F]" /> 全台免運費</div>
+              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-[#1F6B4F]" /> 原廠保固，品質保證</div>
             </div>
 
             {/* SKU */}

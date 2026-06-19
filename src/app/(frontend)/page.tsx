@@ -102,12 +102,14 @@ export default async function HomePage() {
               >
                 瀏覽所有球拍 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                href="/ai"
+              <a
+                href="https://line.me/ti/p/QfXjVSMKha"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-white/30 text-[#FAFAF8] font-semibold px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors text-base"
               >
-                AI 幫我選拍
-              </Link>
+                LINE 詢問選拍
+              </a>
             </div>
           </div>
         </div>

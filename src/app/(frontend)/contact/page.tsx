@@ -6,11 +6,11 @@ export default function ContactPage() {
     <div className="container-padded py-12 max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold text-gray-900 mb-6">聯絡我們</h1>
       <div className="grid sm:grid-cols-2 gap-6 mb-10">
-        <a href="https://line.me/ti/p/@sppickleball" target="_blank" rel="noopener noreferrer"
+        <a href="https://line.me/ti/p/QfXjVSMKha" target="_blank" rel="noopener noreferrer"
           className="bg-[#F2F8F5] border border-[#BCDECF] rounded-xl p-6 text-center hover:shadow-md transition-shadow">
           <div className="text-4xl mb-2">💬</div>
           <h2 className="font-bold text-[#0D2A1B]">LINE 客服</h2>
-          <p className="text-sm text-[#123524] mt-1">@sppickleball</p>
+          <p className="text-sm text-[#123524] mt-1">點此加入 LINE</p>
           <p className="text-xs text-gray-500 mt-2">最快回覆，平日 10:00-18:00</p>
         </a>
         <a href="mailto:service@sportspoint.tw"

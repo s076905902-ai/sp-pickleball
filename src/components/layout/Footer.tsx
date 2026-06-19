@@ -17,7 +17,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://line.me/ti/p/@sppickleball"
+                href="https://line.me/ti/p/QfXjVSMKha"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 bg-[#C8A45D] text-[#111111] text-xs px-4 py-2 rounded-full font-semibold hover:bg-[#B89245] transition-colors"
