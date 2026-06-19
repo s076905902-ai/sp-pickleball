@@ -8,6 +8,7 @@ import { productSchema, faqPageSchema, breadcrumbSchema } from "@/lib/schema-mar
 import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import ProductImageGallery from "@/components/product/ProductImageGallery";
 import { SUITABLE_FOR_LABELS, formatPrice, scoreColor, scoreLabel } from "@/lib/utils";
 import { Star, Shield, Truck, ChevronRight } from "lucide-react";
 
@@ -125,36 +126,11 @@ export default async function ProductPage({ params }: PageProps) {
 
         <div className="grid lg:grid-cols-2 gap-10">
           {/* Images */}
-          <div>
-            <div className="relative aspect-square bg-gray-50 rounded-2xl overflow-hidden mb-3">
-              {product.mainImage ? (
-                <Image
-                  src={product.mainImage}
-                  alt={`${product.name} 匹克球拍`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-contain p-8"
-                  priority
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full text-8xl">🏓</div>
-              )}
-            </div>
-            {product.gallery.length > 0 && (
-              <div className="flex gap-2 overflow-x-auto">
-                {product.gallery.slice(0, 5).map((img, i) => (
-                  <div key={i} className="relative w-16 h-16 flex-shrink-0 border rounded-lg overflow-hidden bg-gray-50">
-                    <Image
-                      src={img}
-                      alt={`${product.name} 圖片 ${i + 2}`}
-                      fill
-                      className="object-contain p-1"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <ProductImageGallery
+            mainImage={product.mainImage}
+            gallery={product.gallery as string[]}
+            productName={product.name}
+          />
 
           {/* Info */}
           <div>
