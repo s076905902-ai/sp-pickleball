@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Upload } from "lucide-react";
 
 interface Brand { id: string; name: string; }
 interface Category { id: string; name: string; }
@@ -27,6 +27,25 @@ export default function NewProductForm({
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      const data = await res.json();
+      if (data.url) set("mainImage", data.url);
+    } catch {
+      setError("圖片上傳失敗");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const [form, setForm] = useState({
     name: "",
@@ -258,9 +277,18 @@ export default function NewProductForm({
 
           {/* Media */}
           <div className="bg-white border rounded-xl p-6 space-y-4">
-            <h2 className="font-semibold text-gray-900">主圖網址</h2>
-            <input type="text" value={form.mainImage} onChange={(e) => set("mainImage", e.target.value)}
-              placeholder="https://..." className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+            <h2 className="font-semibold text-gray-900">主圖</h2>
+            <div className="flex gap-2">
+              <input type="text" value={form.mainImage} onChange={(e) => set("mainImage", e.target.value)}
+                placeholder="貼上圖片網址，或點右側上傳" className="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+              <button type="button" onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="flex items-center gap-1 px-3 py-2 bg-gray-100 hover:bg-gray-200 border rounded-lg text-sm font-medium disabled:opacity-60">
+                <Upload className="w-4 h-4" />
+                {uploading ? "上傳中..." : "上傳圖片"}
+              </button>
+              <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+            </div>
             {form.mainImage && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={form.mainImage} alt="preview" className="h-40 object-contain border rounded-lg" />
