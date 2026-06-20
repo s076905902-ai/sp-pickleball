@@ -64,6 +64,20 @@ export default async function ProductPage({ params }: PageProps) {
 
   if (!product || product.status !== "PUBLISHED") notFound();
 
+  // 若無手動設定的 relatedProducts，自動推薦同品牌商品
+  const relatedProducts = product.relatedProducts.length > 0
+    ? product.relatedProducts
+    : await prisma.product.findMany({
+        where: {
+          brandId: product.brandId,
+          status: "PUBLISHED",
+          id: { not: product.id },
+        },
+        take: 4,
+        orderBy: { isFeatured: "desc" },
+        include: { brand: true, category: true },
+      });
+
   const avgRating =
     product.reviews.length > 0
       ? product.reviews.reduce((s, r) => s + r.rating, 0) / product.reviews.length
@@ -234,11 +248,13 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
 
         {/* Related products */}
-        {product.relatedProducts.length > 0 && (
+        {relatedProducts.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">你可能也喜歡</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-6">
+              {product.relatedProducts.length > 0 ? "你可能也喜歡" : `更多 ${product.brand.name} 球拍`}
+            </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {product.relatedProducts.map((p) => (
+              {relatedProducts.map((p) => (
                 <ProductCard
                   key={p.id}
                   product={{

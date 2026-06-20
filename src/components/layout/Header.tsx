@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingCart, Search, ChevronDown } from "lucide-react";
 
-const navigation = [
+const staticNavigation = [
   {
     label: "球拍",
     href: "/products",
@@ -16,13 +16,7 @@ const navigation = [
       { label: "特賣優惠", href: "/products?sale=1" },
     ],
   },
-  {
-    label: "品牌",
-    href: "/brands",
-    children: [
-      { label: "所有品牌", href: "/brands" },
-    ],
-  },
+  // brands injected dynamically via props
   { label: "比較", href: "/compare" },
   {
     label: "知識庫",
@@ -37,7 +31,21 @@ const navigation = [
   { label: "Academy", href: "/academy" },
 ];
 
-export default function Header() {
+interface BrandItem { name: string; slug: string }
+
+export default function Header({ brands = [] }: { brands?: BrandItem[] }) {
+  const navigation = [
+    staticNavigation[0], // 球拍
+    {
+      label: "品牌",
+      href: "/brands",
+      children: [
+        { label: "所有品牌", href: "/brands" },
+        ...brands.map((b) => ({ label: b.name, href: `/brands/${b.slug}` })),
+      ],
+    },
+    ...staticNavigation.slice(1), // 比較, 知識庫, AI顧問, Academy
+  ];
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
