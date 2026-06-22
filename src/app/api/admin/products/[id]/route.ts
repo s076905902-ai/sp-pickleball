@@ -5,30 +5,39 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   try {
     const { id } = await params;
     const body = await req.json();
+    const data: any = {};
+
+    const nullableStringFields = [
+      "description", "mainImage", "material", "coreMaterial", "surfaceMaterial",
+      "certification", "youtubeUrl", "reelsUrl", "gtin", "mpn",
+    ];
+    const nullableNumberFields = [
+      "weight", "thickness", "length", "width", "gripLength", "gripCircumference",
+      "controlScore", "powerScore", "spinScore", "forgivenessScore", "feelScore",
+    ];
+    const scalarFields = ["name", "slug", "sku", "brandId", "categoryId", "status"];
+
+    for (const field of scalarFields) {
+      if (field in body) data[field] = body[field];
+    }
+    for (const field of nullableStringFields) {
+      if (field in body) data[field] = body[field] || null;
+    }
+    for (const field of nullableNumberFields) {
+      if (field in body) data[field] = body[field] ?? null;
+    }
+    if ("price" in body) data.price = body.price;
+    if ("salePrice" in body) data.salePrice = body.salePrice ?? null;
+    if ("stock" in body) data.stock = body.stock ?? 0;
+    if ("isFeatured" in body) data.isFeatured = body.isFeatured ?? false;
+    if ("suitableFor" in body) data.suitableFor = Array.isArray(body.suitableFor) ? body.suitableFor : [];
+    if ("gallery" in body) data.gallery = Array.isArray(body.gallery) ? body.gallery : [];
+    if ("specs" in body) data.specs = body.specs ?? null;
+    if ("faq" in body) data.faq = body.faq ?? null;
 
     const product = await prisma.product.update({
       where: { id },
-      data: {
-        name: body.name,
-        slug: body.slug,
-        sku: body.sku,
-        brandId: body.brandId,
-        categoryId: body.categoryId,
-        price: body.price,
-        salePrice: body.salePrice ?? null,
-        stock: body.stock ?? 0,
-        status: body.status,
-        isFeatured: body.isFeatured ?? false,
-        description: body.description || null,
-        mainImage: body.mainImage || null,
-        weight: body.weight ?? null,
-        thickness: body.thickness ?? null,
-        material: body.material || null,
-        coreMaterial: body.coreMaterial || null,
-        controlScore: body.controlScore ?? null,
-        powerScore: body.powerScore ?? null,
-        spinScore: body.spinScore ?? null,
-      },
+      data,
     });
 
     return NextResponse.json(product);

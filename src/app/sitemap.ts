@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sportspoint.tw";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [products, brands, categories, articles, comparePagesRaw] = await Promise.all([

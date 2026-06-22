@@ -4,7 +4,7 @@ export default function AdminSettingsPage() {
       section: "網站資訊",
       items: [
         { key: "NEXT_PUBLIC_SITE_NAME", label: "網站名稱", value: process.env.NEXT_PUBLIC_SITE_NAME ?? "SP Pickleball" },
-        { key: "NEXT_PUBLIC_SITE_URL", label: "網站網址", value: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sportspoint.tw" },
+        { key: "NEXT_PUBLIC_SITE_URL", label: "網站網址", value: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw" },
         { key: "NEXTAUTH_URL", label: "Auth URL", value: process.env.NEXTAUTH_URL ?? "http://localhost:3000" },
       ],
     },

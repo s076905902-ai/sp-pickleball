@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "SP Pickleball";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sportspoint.tw";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw";
 const SITE_DESCRIPTION =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
   "台灣最完整的匹克球拍購物、評測、比較與教學平台。專業球拍推薦、品牌介紹、技術教學一站搞定。";
