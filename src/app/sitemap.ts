@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw").replace(
+  "https://sportspoint.tw",
+  "https://www.sportspoint.tw"
+);
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

@@ -4,7 +4,10 @@
  *           Organization, WebSite, SearchAction, LocalBusiness, Person
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw").replace(
+  "https://sportspoint.tw",
+  "https://www.sportspoint.tw"
+);
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "SP Pickleball";
 
 // ─── Organization ────────────────────────────────────────────────────────────

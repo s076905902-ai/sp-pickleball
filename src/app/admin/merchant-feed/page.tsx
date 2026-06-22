@@ -9,7 +9,10 @@ export default async function AdminMerchantFeedPage() {
     take: 20,
   });
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sportspoint.tw").replace(
+    "https://sportspoint.tw",
+    "https://www.sportspoint.tw"
+  );
 
   return (
     <div>
