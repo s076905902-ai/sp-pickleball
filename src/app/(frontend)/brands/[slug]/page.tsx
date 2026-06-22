@@ -35,8 +35,7 @@ export default async function BrandPage({ params }: PageProps) {
       include: {
         products: {
           where: { status: "PUBLISHED" },
-          take: 12,
-          orderBy: { isFeatured: "desc" },
+          orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
           include: { brand: true, category: true },
         },
       },
